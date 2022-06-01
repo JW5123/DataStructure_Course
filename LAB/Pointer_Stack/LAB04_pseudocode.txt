@@ -1,0 +1,62 @@
+#include <stdio.h>
+#定義一個 MAXSIZE 大小為 10
+宣告整數陣列stack其總數為MAXSIZE;
+宣告整數current數值為0;
+宣告整數指標ptr並指向stack初始位置;
+宣告push函式{
+    如果current == MAXSIZE{
+        輸出"堆疊已滿";
+    }
+    否則{
+        輸入第n筆整數;
+        輸入要放入的數值
+        堆疊位置往後;
+    }
+    換行兩次;
+}
+宣告pop函式{
+    如果current == 0{
+        輸出"堆疊已經空了";
+    }
+    否則{
+        堆疊位置往前;
+        刪除指標所指向堆疊當前位置的數;
+    }
+}
+宣告printout函式{
+    輸出"目前堆疊內陣列";
+    從陣列末端依序取堆疊內的值(for){
+        輸出陣列內容;
+    }
+    輸出"Top<--Stack-->Bottom並換行";
+}
+signed main(){
+    宣告整數flag數值為1;
+    宣告整數choose;
+    flag為1時重複執行直到輸入0時跳出迴圈並結束程式(while){
+        輸出"=== Stack Operation ===並換行";
+        輸出"1. Push Operation並換行";
+        輸出"2. Pop Operation並換行";
+        輸出"3. Printout Stack並換行";
+        輸出"0. Quit並換行";
+        =======================
+        輸出"請選擇 [0-3] :" 
+        輸入選擇值(choose);
+        換行兩次;
+        選擇值為1時:
+            呼叫push函式;
+            break;
+        選擇值為2時:
+            呼叫pop函式;
+            break;
+        選擇值為3時:
+            呼叫printout函式;
+            break;
+        選擇值為0時:
+            flag = 0;
+            break;
+        輸入選項不在選擇值內時:
+            輸出"=== Error input (0-3) !!並換行兩次";
+            break;
+    }
+}

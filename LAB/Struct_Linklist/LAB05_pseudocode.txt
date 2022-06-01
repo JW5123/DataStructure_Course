@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+定義結構為node{
+
+    宣告一個字元陣列大小為10;
+    宣告一個整數age;
+    宣告結構變數指標表指向下一個節點;
+
+}宣告node結構型態為Node;
+宣告結構變數head指標指向節點開頭;
+
+int main(){
+
+    建立第一個節點node1;                    
+    將字串複製到node1的name資料裡;
+    設定節點node1的age資料為20;
+    node1暫時不指向下個節點;
+    節點node1等於節點開頭head;
+
+    建立第二個節點node2;
+    將字串複製到node2的name資料裡;
+    設定節點node2的age資料為24;
+    node2暫時不指向下個節點;
+    將節點node1指向node2;
+
+    建立第三個節點node3;
+    將字串複製到node3的name資料裡;
+    設定節點node2的age資料為30;
+    將節點node2指向node3;
+    node3暫時不指向下個節點;
+
+    宣告整數i數值為1;
+    當節點head不為NULL時(while){
+        輸出節點裡的資料並換行;
+        使當前節點為下個節點;
+    }
+    換行;
+
+    return 0;
+}
+
+
+
+
+//宣告指向Node型態的指標node1 = (指標變數指向Node型態)malloc(配置所需記憶空間);
