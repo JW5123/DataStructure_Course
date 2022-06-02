@@ -46,7 +46,7 @@ int DFS(int x)
 
         return max1;
     }
-    return 0; //<-----
+    return 0;
 }
 int main()
 {
