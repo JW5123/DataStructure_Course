@@ -8,15 +8,16 @@ int main(){
 
     cin >> node >> edge;
     cin >> source >> goal;
+    /*
+    if (begin == dest){ 
 
-    //if (begin == dest){ 
+        cout<<"0\n0\n"; 
 
-        //cout<<"0\n0\n"; 
+    } 
 
-    //} 
-
-    //else{
-
+    else{
+    }
+    */
     for(int i = 0; i < node; i++){
         adj.push_back({INT_MAX,INT_MIN});
     }
