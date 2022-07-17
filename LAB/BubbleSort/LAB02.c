@@ -31,33 +31,3 @@ int main(){
 	}
 	return 0;
 }
-
-
-
-/*
-void BubbleSort(int arr[] , int n){
-	for(int i = 0; i < n; i++){
-		for(int j = 0; j < i; j++){
-			if(arr[j] > arr[i]){
-				int temp = arr[j];
-				arr[j] = arr[i];
-				arr[i] = temp;
-			}
-		}
-	}
-}
-*/
-
-/*
-void BubbleSort(int arr[]){
-	for(int i = 1; i < SIZE; i++){
-		for(int j = 0; j < (SIZE - i); j++){
-			if(arr[j] > arr[j + 1]){
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-		}
-	}
-}
-*/
