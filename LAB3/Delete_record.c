@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#define MAX_RECORD 10
+#define MAX_RECORD 5
 
 typedef struct {
     int series;
@@ -11,7 +11,7 @@ typedef struct {
     char date[15];
     char location[20];
 } Record;
-
+int maxSeries = 0;
 
 int menu() {
     int choice;
@@ -30,7 +30,7 @@ void DisplayRecord(Record AppBook[], int count) {
     }
 }
 
-void EnterRecord(Record AppBook[], int* count, int* n) {
+void EnterRecord(Record AppBook[], int* count) {
     if (*count < MAX_RECORD) {
         printf("Input\n");
         Record newData;
@@ -54,29 +54,38 @@ void EnterRecord(Record AppBook[], int* count, int* n) {
         if (isDuplicate) {
             printf("Existed\n");
         } else {
-            int insertIndex = *count;
-            int maxSeries = 0;
-            for (int i = 0; i < *count; i++) {
-                if (AppBook[i].series > maxSeries) {
-                    maxSeries = AppBook[i].series;
+            // if(*count < MAX_RECORD){
+            //     int insertIndex = *count;
+            //     for (int i = 0; i < *count; i++) {
+            //         if (AppBook[i].series > maxSeries) {
+            //             maxSeries = AppBook[i].series;
+            //         }
+            //     }
+            //     newData.series = ++maxSeries;
+            //     AppBook[*count] = newData;
+            //     (*count)++;
+            // } else {
+                int insertIndex = *count;
+                for (int i = 0; i < *count; i++) {
+                    if (AppBook[i].series > maxSeries) {
+                        maxSeries = AppBook[i].series;
+                    }
                 }
-            }
-            newData.series = maxSeries + 1;
+                newData.series = ++maxSeries;
 
-            for (int i = 0; i < *count; i++) {
-                if (AppBook[i].series != i + 1) {
-                    insertIndex = i;
-                    break;
+                for (int i = 0; i < *count; i++) {
+                    if (AppBook[i].series != i + 1) {
+                        insertIndex = i;
+                        break;
+                    }
                 }
-            }
-
-            for (int i = *count; i > insertIndex; i--) {
-                AppBook[i] = AppBook[i - 1];
-            }
-            AppBook[insertIndex] = newData;
-            (*count)++;
+                for (int i = *count; i > insertIndex; i--) {
+                    AppBook[i] = AppBook[i - 1];
+                }
+                AppBook[insertIndex] = newData;
+                (*count)++;
+            // }
             printf("%d %s %s %s %s\n", newData.series, newData.name, newData.event, newData.date, newData.location);
-            printf("%d\n", (*n)++);
         }
     } else {
         printf("Full\n");
@@ -97,12 +106,12 @@ void DeleteRecord(Record AppBook[], int *count) {
         }
         printf("\n");
 
-        int delete;
-        while(scanf("%d", &delete)){
+        int deleteNum;
+        while(scanf("%d", &deleteNum)){
 
             int foundIndex = -1;
             for (int i = 0; i < *count; i++) {
-                if (AppBook[i].series == delete) {
+                if (AppBook[i].series == deleteNum) {
                     foundIndex = i;
                     break;
                 }
@@ -143,14 +152,14 @@ void Quit() {
 int main() {
 
     Record AppBook[MAX_RECORD];
-    int count = 0, n = 1;
+    int count = 0;
     int choice;
 
     while (1) {
         choice = menu();
         switch (choice) {
             case 1: 
-                EnterRecord(AppBook, &count, &n);
+                EnterRecord(AppBook, &count);
                 break;
             case 2:
                 DeleteRecord(AppBook, &count);
