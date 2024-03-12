@@ -142,6 +142,7 @@ void DeleteRecord(Record AppBook[], int *count) {
 
 void Search(Record AppBook[], int count) {
     printf("Search\n");
+    
 }
 
 void Quit() {
