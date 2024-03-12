@@ -26,20 +26,6 @@ void DisplayRecord(Record AppBook[], int count) {
     }
 }
 
-void SortData(Record AppBook[], int *count) {
-    for (int i = 0; i < *count - 1; i++) {
-        int minIndex = i;
-        for (int j = i + 1; j < *count; j++) {
-            if (AppBook[j].series < AppBook[minIndex].series) {
-                minIndex = j;
-            }
-        }
-        Record temp = AppBook[i];
-        AppBook[i] = AppBook[minIndex];
-        AppBook[minIndex] = temp;
-    }
-}
-
 void EnterRecord(Record AppBook[], int* count, int* num) {
     if (*count < MAX_RECORD) {
         printf("Input\n");
@@ -83,41 +69,55 @@ void SortingRecord(Record AppBook[], int count) {
 
     printf("Sorting\n");
     char option;
-    scanf("%c", &option);
-
-    switch (option) {
-        case 'A':
-            SortData(AppBook, &count);
-            break;
-        case 'B':
-            for (int i = 0; i < count - 1; i++) {
-                int minIndex = i;
-                for (int j = i + 1; j < count; j++) {
-                    int year1, month1, day1;
-                    sscanf(AppBook[j].date, "%d/%d/%d", &year1, &month1, &day1);
-
-                    int year2, month2, day2;
-                    sscanf(AppBook[minIndex].date, "%d/%d/%d", &year2, &month2, &day2);
-
-                    if (year1 < year2 || (year1 == year2 && (month1 < month2 || (month1 == month2 && day1 < day2)))) {
-                        minIndex = j;
-                    }
+    scanf(" %c", &option);
+    if (option == 'A') {
+        for (int i = 0; i < count - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < count; j++) {
+                if (AppBook[j].series < AppBook[minIndex].series) {
+                    minIndex = j;
                 }
-                Record temp = AppBook[i];
-                AppBook[i] = AppBook[minIndex];
-                AppBook[minIndex] = temp;
             }
-            break;
-        default:
-            return;
-    }
+            Record temp = AppBook[i];
+            AppBook[i] = AppBook[minIndex];
+            AppBook[minIndex] = temp;
+        }
+        DisplayRecord(AppBook, count);
+    } else if (option == 'B') {
+        for (int i = 0; i < count - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < count; j++) {
+                int year1, month1, day1;
+                sscanf(AppBook[j].date, "%d/%d/%d", &year1, &month1, &day1);
 
-    DisplayRecord(AppBook, count);
+                int year2, month2, day2;
+                sscanf(AppBook[minIndex].date, "%d/%d/%d", &year2, &month2, &day2);
+
+                if (year1 < year2 || (year1 == year2 && (month1 < month2 || (month1 == month2 && day1 < day2)))) {
+                    minIndex = j;
+                }
+            }
+            Record temp = AppBook[i];
+            AppBook[i] = AppBook[minIndex];
+            AppBook[minIndex] = temp;
+        }
+        DisplayRecord(AppBook, count);
+    }
 }
 
 void DeleteRecord(Record AppBook[], int *count) {
 
-    SortData(AppBook, count);
+    for (int i = 0; i < *count - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < *count; j++) {
+            if (AppBook[j].series < AppBook[minIndex].series) {
+                minIndex = j;
+            }
+        }
+        Record temp = AppBook[i];
+        AppBook[i] = AppBook[minIndex];
+        AppBook[minIndex] = temp;
+    }
 
     if (*count > 0) {
 
@@ -130,18 +130,18 @@ void DeleteRecord(Record AppBook[], int *count) {
         int deleteNum;
         while(scanf("%d", &deleteNum)){
 
-            int foundIndex = 0;
+            int foundIndex = false;
             for (int i = 1; i <= *count; i++) {
                 if (AppBook[i].series == deleteNum) {
                     for (int j = i; j <= *count; j++) {
                         AppBook[j] = AppBook[j + 1];
                     }
-                    foundIndex = 1;
+                    foundIndex = true;
                     break;
                 }
             }
 
-            if (foundIndex != 0) {
+            if (foundIndex) {
                 --*count;
                 printf("Series:");
                 for (int i = 1; i <= *count; i++) {

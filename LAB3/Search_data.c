@@ -83,36 +83,30 @@ void SortingRecord(Record AppBook[], int count) {
 
     printf("Sorting\n");
     char option;
-    scanf("%c", &option);
+    scanf(" %c", &option);
+    if (option == 'A') {
+        SortData(AppBook, &count);
+        DisplayRecord(AppBook, count);
+    } else if (option == 'B') {
+        for (int i = 0; i < count - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < count; j++) {
+                int year1, month1, day1;
+                sscanf(AppBook[j].date, "%d/%d/%d", &year1, &month1, &day1);
 
-    switch (option) {
-        case 'A':
-            SortData(AppBook, &count);
-            break;
-        case 'B':
-            for (int i = 0; i < count - 1; i++) {
-                int minIndex = i;
-                for (int j = i + 1; j < count; j++) {
-                    int year1, month1, day1;
-                    sscanf(AppBook[j].date, "%d/%d/%d", &year1, &month1, &day1);
+                int year2, month2, day2;
+                sscanf(AppBook[minIndex].date, "%d/%d/%d", &year2, &month2, &day2);
 
-                    int year2, month2, day2;
-                    sscanf(AppBook[minIndex].date, "%d/%d/%d", &year2, &month2, &day2);
-
-                    if (year1 < year2 || (year1 == year2 && (month1 < month2 || (month1 == month2 && day1 < day2)))) {
-                        minIndex = j;
-                    }
+                if (year1 < year2 || (year1 == year2 && (month1 < month2 || (month1 == month2 && day1 < day2)))) {
+                    minIndex = j;
                 }
-                Record temp = AppBook[i];
-                AppBook[i] = AppBook[minIndex];
-                AppBook[minIndex] = temp;
             }
-            break;
-        default:
-            return;
+            Record temp = AppBook[i];
+            AppBook[i] = AppBook[minIndex];
+            AppBook[minIndex] = temp;
+        }
+        DisplayRecord(AppBook, count);
     }
-
-    DisplayRecord(AppBook, count);
 }
 
 void DeleteRecord(Record AppBook[], int *count) {
