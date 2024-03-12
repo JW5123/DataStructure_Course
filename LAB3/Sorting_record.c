@@ -160,29 +160,7 @@ void DeleteRecord(Record AppBook[], int *count) {
 }
 
 void Search(Record AppBook[], int count) {
-    if (count > 0) {
-        printf("Searching\n");
-        char searchData[15];
-        scanf("%s", searchData);
-        int result = 0;
-
-        for (int i = 0; i < count; i++) {
-            if (strstr(AppBook[i].name, searchData) != NULL ||
-                strstr(AppBook[i].event, searchData) != NULL ||
-                strstr(AppBook[i].date, searchData) != NULL ||
-                strstr(AppBook[i].location, searchData) != NULL) {
-                printf("%d %s %s %s %s\n", AppBook[i].series, AppBook[i].name, AppBook[i].event, AppBook[i].date, AppBook[i].location);
-                result++;
-            }
-        }
-
-        if (result == 0) {
-            printf("No Data\n");
-        }
-
-    } else {
-        printf("No Data\n");
-    }
+    printf("Searching\n");
 }
 
 void Quit() {
