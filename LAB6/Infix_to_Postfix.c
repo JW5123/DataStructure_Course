@@ -75,9 +75,7 @@ int main(){
     char infix[MAX] = {'\0'};
     char postfix[MAX] = {'\0'};
 
-    while(1){
-        scanf("%s", infix);
-        
+    while(scanf("%s", infix) != EOF){
         if(infix[0] == '0'){
             printf("quit\n");
             break;
