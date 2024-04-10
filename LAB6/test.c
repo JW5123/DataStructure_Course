@@ -40,7 +40,7 @@ char* expression(char exp[]) {
         }
     }
 
-    // return exp;
+    return exp;
 }
 
 
