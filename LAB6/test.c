@@ -43,6 +43,7 @@ char* expression(char exp[]) {
     return exp;
 }
 
+
 int main() {
     char exp[100];
     printf("請輸入表達式：\n");
