@@ -43,15 +43,13 @@ char* expression(char exp[]) {
     return exp;
 }
 
-
 int main() {
     char exp[100];
-    printf("請輸入表達式：\n");
+    printf("請輸入表達式：");
     scanf("%s", exp);
 
     char* result = expression(exp);
     printf("結果: %s\n", result);
     
-
     return 0;
 }

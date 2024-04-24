@@ -6,6 +6,7 @@
 #include <ctype.h>
 #define MAX 50
 
+// 運算元權重
 int priority(char opt){
     switch(opt){
         case '+':
@@ -21,6 +22,7 @@ int priority(char opt){
     }
 }
 
+// 中序轉後序
 void inToPostfix(char* infix, char* postfix){
     char stack[MAX] = {'\0'};
     int i, j, top = 0;
