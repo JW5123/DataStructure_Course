@@ -16,9 +16,12 @@ int main() {
         adjMatrix[y][x] = 1;
     }
 
+    printf("input:\nmatrix:\n");
     for (int i = 0; i <= maxNode; i++) {
         for (int j = 0; j <= maxNode; j++) {
-            printf("%d ", adjMatrix[i][j]);
+            printf("%d", adjMatrix[i][j]);
+            if(i != maxNode || j != maxNode)
+                printf(" ");
         }
         printf("\n");
     }
